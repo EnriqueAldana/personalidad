@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Prueba de Personalidad</title>
+</head>
+<body>
+<div align="center">
+<h1> Lista de preguntas</h1>
+<br/><br/>
+<a href="/nueva"> Crear una nueva pregunta</a>
+<br/><br/>
+<a href="/"> Ir al test</a>
+<table border="1" cellpadding="10">
+<thead>
+	<tr>
+		<th>Num.</th>
+		<th>Pregunta</th>
+	
+		<th>Acciones</th>
+	</tr>
+	<tbody>
+		<tr th:each="pregunta : ${listaPreguntas}">
+			<td th:text="${pregunta.idpreguntas}">
+			<td th:text="${pregunta.pregunta}">
+				<td>
+                    <a th:href="@{'/editar/'} + ${pregunta.idpreguntas}">Editar</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/borrar/'} + ${pregunta.idpreguntas}">Borrar</a>
+                </td>
+		</tr>
+	</tbody>
+</thead>
+
+</table>
+</div>
+</body>
+</html>

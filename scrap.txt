@@ -1,0 +1,22 @@
+Validaciones 
+https://beanvalidation.org/
+https://stackabuse.com/spring-boot-thymeleaf-form-data-validation-with-bean-validator/
+
+https://asbnotebook.com/spring-boot-thymeleaf-form-validation-example/
+
+
+<input type="text" th:field="*{preguntas[__${itemStat.index}__].pregunta1}" readonly="readonly" />	
+
+<form id="miforma"  action="#" th:action="@{/calificar}" th:object="${form}" method="post">
+
+onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+
+Las respuesta se encuentra en:
+id= preguntas0.respuesta1
+    preguntas0.respuesta2
+    preguntas0.respuesta3
+    preguntas0.respuesta4
+...
+id= preguntas9.respuesta4
+
+name= preguntas[0].respuesta1

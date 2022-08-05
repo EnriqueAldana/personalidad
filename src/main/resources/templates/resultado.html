@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Prueba de Personalidad</title>
+</head>
+<body>
+<div align="center">
+<h1> Resultado de la prueba</h1>
+<br/><br/>
+
+<a href="/"> Regresar a la prueba</a>
+<br/><br/>
+<table border="1" cellpadding="10">
+<thead>
+	<tr>
+		<th>Valoracion</th>
+		<th>Resultado</th>
+	
+	</tr>
+	<tbody>
+	
+	<tr>
+	<td><p th:text="Caracter"/> </td>	
+	<td><p th:text="*{calificacion}"/> </td>		
+                 
+	</tr>
+		
+	</tbody>
+</thead>
+
+</table>
+</div>
+</body>
+</html>

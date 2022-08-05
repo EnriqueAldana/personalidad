@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+
+</style>
+<meta charset="utf-8"/>
+<title>Prueba de Personalidad</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+ </head>
+<body>
+ <div class="container">
+<div align="center">
+<h1> Calificacion de preguntas</h1>
+<br/><br/>
+<form id="MiForma" class="form-group" action="/calificar" th:action="@{/calificar}" th:object="${form}" method="post">
+<fieldset>
+<button type="submit" class="btn btn-primary">Calificar</button>
+	
+<br/><br/>
+<table border="1" cellpadding="10" style="width:100%">
+<thead>
+
+	<tr>
+		<th>Pregunta</th>
+		<th>Calificacion</th>
+		<th>Pregunta</th>
+		<th>Calificacion</th>
+		<th>Pregunta</th>
+		<th>Calificacion</th>
+		<th>Pregunta</th>
+		<th>Calificacion</th>
+	</tr>
+	<tbody>
+	
+		<tr th:each="pregunta , itemStat : *{preguntas}">
+			
+			<td >	
+				
+				
+					<input id="field" type="text" th:field="*{preguntas[__${itemStat.index}__].pregunta1}" readonly="readonly" />	
+					
+				
+			</td>
+			<td >	
+				<div class="form-group">
+					<input type="number" min="1" max="4" class="form-control"  th:field="*{preguntas[__${itemStat.index}__].respuesta1}"  />	
+				</div>	
+			</td>
+			<td >	
+					<input type="text" th:field="*{preguntas[__${itemStat.index}__].pregunta2}" readonly="readonly"/>	
+			</td>
+			<td >	
+					<input type="number" min="1" max="4" th:field="*{preguntas[__${itemStat.index}__].respuesta2}" />	
+			</td>
+			<td >	
+					<input type="text" th:field="*{preguntas[__${itemStat.index}__].pregunta3}" readonly="readonly"/>	
+			</td>
+			<td >	
+					<input type="number" min="1" max="4" th:field="*{preguntas[__${itemStat.index}__].respuesta3}" />	
+			</td>
+			<td >	
+					<input type="text" th:field="*{preguntas[__${itemStat.index}__].pregunta4}" readonly="readonly"/>	
+			</td>
+			<td >	
+					<input type="number" min="1" max="4" th:field="*{preguntas[__${itemStat.index}__].respuesta4}" />	
+			</td>
+		
+			
+		</tr>
+		
+	</tbody>
+</thead>
+
+</table>
+</fieldset>
+<br/><br/>
+
+</form>
+</div>
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+// just for the demos, avoids form submit
+$(document).ready(function () {
+             $("#MiForma").validate({
+            	 
+            	 /* Use the submitHandler method to add custom-selector-based validation. */
+            	    submitHandler: function(form, ev) {
+            	    	console.log('Entrando a validar' );
+            	       
+            	        var r01 = document.getElementById("preguntas0.respuesta1").value;
+            	        var r02 = document.getElementById("preguntas0.respuesta2").value;
+            	        var r03 = document.getElementById("preguntas0.respuesta3").value;
+            	        var r04 = document.getElementById("preguntas0.respuesta4").value;
+            	        var sumar0 = Number(r01) + Number(r02) + Number(r03) + Number(r04);
+            	        
+            	        var validacionr0= false;
+            	        if(sumar0 == 10){
+            	        	validacionr0=true;
+            	        }
+            	        var r11 = document.getElementById("preguntas1.respuesta1").value;
+            	        var r12 = document.getElementById("preguntas1.respuesta2").value;
+            	        var r13 = document.getElementById("preguntas1.respuesta3").value;
+            	        var r14 = document.getElementById("preguntas1.respuesta4").value;
+            	        var sumar1 = Number(r11) + Number(r12) + Number(r13) + Number(r14);
+            	        
+            	        var validacionr1= false;
+            	        if(sumar1 == 10){
+            	        	validacionr1=true;
+            	        }
+            	        console.log("validacionr0: " + validacionr0);
+            	        console.log("validacionr1: " + validacionr1);
+            	        
+            	        /* Validacion. Si cumple envia la forma */
+            	        if (  validacionr0 && validacionr1 ) {
+            	        	
+            	            this.showErrors({
+            	                'error': 'Ponga un numero del 1 al 4 para continuar'
+            	            });
+            	            return;
+            	        } else{
+            	        	if (!validacionr0){
+            	        		alert("En el renglon 1 las entradas deben tener numeros del 1 al 4 y deben sumar 10");
+            	        	}else if (!validacionr1){
+            	        		alert("En el renglon 2 las entradas deben tener numeros del 1 al 4 y deben sumar 10");
+            	        	}
+            	        	
+            	        }
+            	    }  
+             });
+         });
+</script>
+</div>
+</body>
+</html>
